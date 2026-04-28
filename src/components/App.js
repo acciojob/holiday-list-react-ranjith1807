@@ -32,10 +32,29 @@ const App = () => {
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
     ]
-    
+  const [city, setCities] = useState([]);
+
+  useEffect(() => {
+    const filteredList = cityList.filter(
+      (item) => item.country === 'India'
+    );
+    setCities(filteredList);
+  }, []);
   return (
     <div id="main">
                {/* Do not remove the main div */}
+      <h2>Domestic Holiday Destinations</h2>
+      <ol>
+        {city.map((item, index) => {
+          const uniqueKey = `location${index + 1}`;
+          
+          return (
+            <li key={uniqueKey}>
+              {item.name}
+            </li>
+          );
+        })}
+      </ol>
     </div>
   )
 }
